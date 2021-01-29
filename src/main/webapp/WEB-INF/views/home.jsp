@@ -46,7 +46,7 @@ $('#term').focus(function(){
 					for(var i=0; i<json.results.length; i++){
 						var date = (json.results[i].release_date).split('-');
 						var year = date[0];
-						$('#poster').append('<div id="columns"><a href="detail?id='+json.results[i].id+'"><img src=\"http://image.tmdb.org/t/p/w500/' + json.results[i].poster_path + '\" class=\"img-responsive\" ></a></div><div><strong>' + json.results[i].original_title +'('+year+') </strong></div>');	
+						$('#poster').append('<div id="columns"><a href="detail?id='+json.results[i].id+'"><img src=\"http://image.tmdb.org/t/p/w500/' + json.results[i].poster_path + '\" class=\"img-responsive\" ></a></div><div><strong>' + json.results[i].title +'('+year+') </strong></div>');	
 					}
                 } else {
                    $.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=goonies&callback=?", function(json) {
