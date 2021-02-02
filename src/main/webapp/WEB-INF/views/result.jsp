@@ -18,9 +18,10 @@
 		showResult(page)
 	}
 	function showResult(page){
-		$.getJSON("https://api.themoviedb.org/3/search/${option}?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=ko&query=${keyword}&page="+page, function(json) {
+		$.getJSON("https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=ko&query=${keyword}&page="+page, function(json) {
             if (json != "Nothing found."){
 					console.log(json);
+					
 					for(var i=0; i<json.results.length; i++){
 						if(json.results[i].release_date != null){
 							var date = (json.results[i].release_date).split('-');
@@ -28,11 +29,13 @@
 						}else{
 							var year = ""
 						}
-						if("${option}" == "movie"){
-							$('.search_result').append('<div id="columns"><a href="detail?id='+json.results[i].id+'&option=movie"><img src=\"http://image.tmdb.org/t/p/w500/' + json.results[i].poster_path + '\" class=\"img-responsive\" ></a></div><div><strong>' + json.results[i].title +'('+year+') </strong></div>');	
-						}else if("${option}" == "person"){
-							$('.search_result').append('<div id="columns"><a href="detail?id='+json.results[i].id+'&option=movie"><img src=\"http://image.tmdb.org/t/p/w500/' + json.results[i].profile_path + '\" class=\"img-responsive\" ></a></div><div><strong>' + json.results[i].name +'('+json.results[i].known_for_department+') </strong></div>');
+						if(json.results[i].poster_path != null){
+							var img = "http://image.tmdb.org/t/p/w500/" + json.results[i].poster_path;
+						}else{
+							var img = "https://upload2.inven.co.kr/upload/2017/10/20/bbs/i15385224326.jpg";
 						}
+						$('.search_result').append('<div id="columns"><a href="detail?id='+json.results[i].id+'&option=movie"><img src='+img+' class=\"img-responsive\" ></a></div><div><strong>' + json.results[i].title +'('+year+') </strong></div>');
+						
 					}
                } else {
                  

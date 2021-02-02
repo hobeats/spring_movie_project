@@ -30,7 +30,7 @@
 		<constructor-arg ref="fac"/>
 	</bean>
 	
-	<mybatis-spring:scan base-package="net.koreate.*.dao"/>
+	<mybatis-spring:scan base-package="com.project.user.dao"/>
 	
 </beans>
 
