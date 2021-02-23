@@ -59,9 +59,21 @@ function getMyReview(){
 		},
 		success:function(data){
 			for(var i=0; i<data.length; i++){
-				$.getJSON("https://api.themoviedb.org/3/movie/"+data[i].mid+"/similar?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=ko",function(result){
-					$(".myReviewList").append('<div class="columns"><a href="detail?id='+data[i].mid+'&option=movie"><img src=\"http://image.tmdb.org/t/p/w500/' + results.poster_path + '\" class=\"img-responsive\" ></a></div>');
-				});
+				(function(i){
+					$.getJSON("https://api.themoviedb.org/3/movie/"+data[i].mid+"?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=ko",function(result){
+						console.log(result);
+						var html = '<div class="columns"><a href="${pageContext.request.contextPath}/detail?id='+data[i].mid+'&option=movie"><img src=\"http://image.tmdb.org/t/p/w500/' + result.poster_path + '\" class=\"img-responsive\" ></a></div>';
+							html += '<div class="title">'+result.original_title+'</div>';
+							if(data[i].star != null){
+								html += '<div class="star"><i class="fas fa-star"></i>'+data[i].star+'</div>';
+							}
+							if(data[i].review != null && !data[i].review == ""){
+								html += '<i class="far fa-comment-dots"></i>'
+							}
+						$(".myReviewList").append(html)
+						;
+					});
+				})(i);
 			}
 		}
 	});
