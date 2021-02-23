@@ -1,0 +1,25 @@
+@charset "UTF-8";
+body{
+	background-color: #F2EDD7;
+	
+	
+}
+
+	.login_page{
+		padding-top: 85px;
+	}
+	
+	div{
+	     margin:auto;	     	     	     
+	}
+		
+	
+	table{
+	     margin:auto;
+	     font-size:20px;	     	     
+	}
+	
+	table tr{
+	     height:50px;
+	 }
+	

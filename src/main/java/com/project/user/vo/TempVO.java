@@ -3,10 +3,7 @@ package com.project.user.vo;
 import lombok.Data;
 
 @Data
-public class LoginDTO {
-	
+public class TempVO {
 	private String uid;
-	private String upw;
-	private boolean userCookie;
-
+	private String cert;
 }

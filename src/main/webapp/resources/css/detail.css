@@ -1,0 +1,190 @@
+body{
+	margin:0;
+	padding:0;
+}
+
+.detail, .detail_crew, .detail_similar, .review_container{
+	display:flex;
+}
+
+
+.detail{
+	width: 80%;
+	padding-top: 100px;
+	margin: 0 auto;
+	justify-content: center;
+}
+.detail_poster{
+	display:flex;
+	flex-direction:column;
+	align-content:flex-start;
+	align-items:center;
+}
+.movie_poster img{
+	width: 300px;
+}
+.detail_detail{
+	width:50%;
+	margin-left: 20px;
+	align-content: space-around;
+}
+.detail_detail div{
+	margin-bottom: 10px;
+}
+
+.movie_title{
+	font-size: 1.5rem;
+	font-weight: 900;
+}
+.overview{
+	width:100%;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: rgba(0,0,0,0.1);
+	-webkit-box-shadow: 10px 10px 24px -20px rgba(0,0,0,0.75);
+	-moz-box-shadow: 10px 10px 24px -20px rgba(0,0,0,0.75);
+	box-shadow: 10px 10px 24px -20px rgba(0,0,0,0.75);
+}
+
+.detail_etc{
+	display:flex;
+	margin-top: -20px;
+	padding-left: 10px;
+	height:40px;
+	width:80%;
+	background-color:#4A801E;
+	border-radius:0 10px 10px 10px;
+}
+.detail_etc div{
+	margin-top: 8px;
+	margin-right: 10px;
+	color: white;
+	
+}
+
+.columns{
+	width: 150px;
+	margin-right:10px;
+}
+.detail_crew .columns span{
+	text-align:center;
+}
+.detail_crew .columns img{
+	display:block;
+	width: 100%;
+}
+
+.if_you{
+	width: 250px;
+	font-weight: bold;
+	border: 5px solid #4A801E;
+	border-bottom:none;
+	border-radius: 100px 100px 0 0;
+	margin-left: 10px;
+	padding: 10px 0 1px 30px;
+}
+.detail_similar{
+	margin-top: 0px;	
+}
+.detail_similar .columns img{
+	width: 100%;
+	align-items:center;
+}
+
+.detail_similar .columns img:hover{
+	-webkit-box-shadow: 13px 14px 49px -20px rgba(0,0,0,1);
+	-moz-box-shadow: 13px 14px 49px -20px rgba(0,0,0,1);
+	box-shadow: 13px 14px 49px -20px rgba(0,0,0,1);
+}
+
+.review_container{
+	width:80%;
+	margin: 0 auto;
+	display:flex;
+	align-items:center;
+	flex-direction: column;
+}
+.edit_box, .review_my, .review_list{
+	width:80%;
+	height:250px;
+	padding: 10px;
+}
+
+.edit_box form{
+	width: 90%;
+	margin: 0 auto;
+}
+.edit_box input{
+	display:inline-block;
+	border:none;
+}
+.edit_box input:focus{
+	outline:none;
+}
+.c_uname, .my_nickName, .nickName{
+	font-size:2rem;
+	padding: 5px;
+	margin-left: 5px;
+	background-color: rgba(0,0,0,0);
+}
+.review_box, .my_review, .review{
+	height:180px;
+	border-radius: 10px;
+	padding: 20px;
+	-webkit-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.43);
+	-moz-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.43);
+	box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.43);
+}
+
+.c_submit, .etc{
+	float:right;
+	border: none;
+	background-color: #FFF;
+	font-size: 2rem;
+	margin-top: 150px;
+}
+.etc{
+	display:flex;
+	color: rgba(0,0,0,0.5);
+	font-size: 1.5rem;
+}
+.etc input{
+	width: 50px;
+	border: none;
+	color: rgba(0,0,0,0.5);
+	font-size: 1.5rem;
+}
+.etc input:focus{
+	outline:none;
+}
+.etc div{
+	margin-right: 25px;
+}
+.fa-heart:hover, .fa-thumbs-down:hover{
+	cursor:pointer;
+}
+.edit_box textarea{
+	width: 95%;
+	height: 150px;
+	resize: none;
+	font-size:15px;
+	border:none;
+}
+
+.edit_box textarea:focus{
+	outline:none;
+}
+
+@media screen and (max-width:1100px){
+	.detail{
+		display:flex;
+		flex-direction: column;
+		align-items:center;
+	}
+	.detail div{
+		width: 100%;
+	}
+	.if_you{
+		width: 100px;
+	}
+}

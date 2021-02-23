@@ -1,7 +1,9 @@
 package com.project.user.dao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.project.user.vo.LoginDTO;
 import com.project.user.vo.UserVO;
@@ -9,15 +11,28 @@ import com.project.user.vo.UserVO;
 
 public interface UserDAO {
 	
-	@Insert("INSERT INTO movie_test(userid,userpw,nickname,email) VALUES(#{userid},#{userpw},#{nickname},#{email})")
+	@Insert("INSERT INTO movie_user(uid,upw,nickName) VALUES(#{uid},#{upw},#{nickName})")
 	void join(UserVO vo)throws Exception;
 	
-	@Select("SELECT * FROM movie_test WHERE userid = #{userid} AND userpw = #{userpw}")
+	@Select("SELECT * FROM movie_user WHERE uid = #{uid} AND upw = #{upw}")
 	UserVO login(LoginDTO dto)throws Exception;
 	
-	@Select("SELECT * FROM movie_test WHERE userid = #{userid}")
+	@Select("SELECT * FROM movie_user WHERE uid = #{uid}")
 	UserVO getUserById(String uid)throws Exception;
-
+	
+	//cert = y로 변경
+	@Update("UPDATE movie_user SET cert = 'Y' WHERE uid = #{uid}")
+	void changeCert(String uid) throws Exception;
+	
+	//회원 수정(닉네임 과 비밀번호)
+	@Update("update movie_user set nickName = #{nickName}, upw = #{upw} where uid = #{uid}")
+	public void modify(UserVO vo)throws Exception;
+		
+	//회원 탈퇴 (비밀번호 일치시)
+	@Delete("delete from movie_user where uid = #{uid} AND upw = #{upw}")
+	public void delete(UserVO vo)throws Exception;
+	
+	
 }
 
 

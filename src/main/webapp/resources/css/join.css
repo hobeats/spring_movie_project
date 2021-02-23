@@ -1,0 +1,17 @@
+@charset "UTF-8";
+	.join_page{
+		padding-top: 85px;
+	}
+	div{
+	     margin:auto;	     
+	}
+	
+	table{
+	     margin:auto;
+	     font-size:20px;	     	     
+	}
+	
+	table tr{
+	     height:50px;
+	 }
+	
