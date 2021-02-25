@@ -3,15 +3,27 @@
  	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <jsp:include page="../include/header.jsp"/>
- 
-<html>
-<link href="<c:url value="/resources/css/userdetail.css" />" rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/resources/css/userdetail.css" rel="stylesheet">
+<style>
+.uploadImage{
+		width: 100px;
+		height: 100px;
+		border-radius: 50px;
+		border: 1px solid #ccc;
+	}
+</style>
 <body>
 <div class="userdetail">
 		<form id="detailForm" class="detail" method="post">
 			<input type="hidden" name="uno" value="${userInfo.uno }" readonly/>
 			<table>
+				<tr>
+					<td colspan="2">
+						<img src="${userInfo.profile_path}" class="uploadImage" id="sImage"/><br/>
+						<input type="hidden" id="profile_path" name="profile_path"/>
+						<input type="file" id="pImage" accept="image/*"/>
+					</td>
+				</tr>
 				<tr>
 					<td><label>아이디</label></td>
 					<td>
@@ -80,15 +92,6 @@ function getMyReview(){
 }
 $(document).ready(function(){
 	$("#modifyBtn").on("click", function(){
-		if($("#nickName").val() == ""){
-			alert("닉네임을 입력해주세요.");
-			$("#nickName").focus();
-			return false;
-		}else if($("#upw").val() == ""){
-			alert("비밀번호를 입력해주세요.");
-			$("#upw").focus();
-			return false;
-		}
 			obj.attr("action", "modify");
 			obj.attr("method", "post");
 			obj.submit();
@@ -119,7 +122,33 @@ $(document).ready(function(){
 	
 	});
 });
+function getOriginalName(data){
+	var idx = data.indexOf("_")+1;
+	return data.substr(idx);
+}
 
+$("#pImage").on("change",function(){
+	var files = this.files;
+	console.log(files);
+	var formData = new FormData();
+	formData.append("file",files[0]);
+	console.log(formData);
+	
+	$.ajax({
+		type: "POST",
+		url: "uploadProfile",
+		contentType: false,
+		processData: false,
+		dataType: "text",
+		data : formData,
+		success: function(data){
+			console.log(data);
+			var value ="${pageContext.request.contextPath}/upload"+data
+			$("#sImage").attr("src","${pageContext.request.contextPath}/upload"+data);
+			$("#profile_path").val(value);
+		}
+	});
+});
 </script>
 
 

@@ -73,7 +73,7 @@
 	var contextPath = "${pageContext.request.contextPath}";
 	function getList(){
 		$(".review_list").html("");
-		$.getJSON("list/"+mid, function(data){
+		$.getJSON(contextPath+"/list/"+mid, function(data){
 			for(var i=0; i<data.length; i++){
 				(function(i){
 					$.ajax({
@@ -109,6 +109,30 @@
 			};
 		});
 	}
+	$(".my-rating").starRating({
+		 totalStars: 5,
+		 starShape: 'rounded',
+		 starSize: 50,
+		 hoverColor: '#4A801E',
+		 disableAfterRate: false,
+		 callback: function(currentRating, $el){
+		  	$.ajax({
+		  		type:"POST",
+		  		url: "rating",
+		  		data:{
+		  			mid : mid,
+		  			nickName : nickName,
+		  			star : currentRating
+		  		},
+		  		success : function(data){
+		  			console.log(data);
+		  			getList();
+		  		},
+		  		error:function(data){
+		  		}
+		  	});
+		 }
+	});
 	function getDate(date){
 		var time = Math.ceil((new Date() - date)/1000)
 		console.log(time);

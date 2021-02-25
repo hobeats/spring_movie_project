@@ -27,7 +27,7 @@ import com.project.user.vo.UserVO;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user") 
 public class UserController {
 	
 	@Inject
@@ -147,8 +147,10 @@ public class UserController {
 	@PostMapping("/modify")
 	public String modify(UserVO vo, HttpSession session) throws Exception{
 		us.modify(vo);
-		session.invalidate();		
-		return "/user/login";
+		UserVO userVO = (UserVO) session.getAttribute("userInfo");
+		UserVO uvo = us.getUserById(userVO.getUid());
+		session.setAttribute("userInfo", uvo);
+		return "/user/userdetail";
 	}
 	
 	//회원 탈퇴

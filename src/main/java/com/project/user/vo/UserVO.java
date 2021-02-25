@@ -9,4 +9,5 @@ public class UserVO {
 	private String upw;
 	private String nickName;
 	private String cert;
+	private String profile_path;
 }

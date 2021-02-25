@@ -1,5 +1,6 @@
 package com.project.common.interceptor;
 
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.UUID;
 
@@ -88,7 +89,7 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter {
 			sb.append("<meta charset='utf-8'/>");
 			sb.append("</head>");
 			sb.append("<body>");
-			sb.append("<a href='http://192.168.1.106:8080"+request.getContextPath()+"/user/signCheck?uid="+uid+"&cert="+cert+"'>");
+			sb.append("<a href='http://192.168.1.61:8080"+request.getContextPath()+"/user/signCheck?uid="+uid+"&cert="+cert+"'>");
 			sb.append("이메일 확인이 완료되었습니다. 회원가입읍 마무리 하시려면 클릭해주세요.</a>");
 			sb.append("</body>");
 			sb.append("</html>");

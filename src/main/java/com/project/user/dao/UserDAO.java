@@ -24,8 +24,8 @@ public interface UserDAO {
 	@Update("UPDATE movie_user SET cert = 'Y' WHERE uid = #{uid}")
 	void changeCert(String uid) throws Exception;
 	
-	//회원 수정(닉네임 과 비밀번호)
-	@Update("update movie_user set nickName = #{nickName}, upw = #{upw} where uid = #{uid}")
+	//회원 수정(프사)
+	@Update("UPDATE movie_user set profile_path = #{profile_path} WHERE uid = #{uid}")
 	public void modify(UserVO vo)throws Exception;
 		
 	//회원 탈퇴 (비밀번호 일치시)

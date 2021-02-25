@@ -22,8 +22,7 @@
 		<div class="nav_user">
 			<c:choose>
 				<c:when test="${!empty sessionScope.userInfo}">
-					<div class="userInfo"><a href="${pageContext.request.contextPath }/user/userdetail">${userInfo.nickName}님 </a></div>
-					<div class="logout"><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></div>
+					<div class="userInfo"><img src="${userInfo.profile_path}"/></div>
 				</c:when>
 				<c:otherwise>
 					<div class="span"><a href="${pageContext.request.contextPath }/user/login">로그인</a></div>
@@ -31,8 +30,16 @@
 			</c:choose>
 		</div>
 	</nav>
+	<div class="userHover">
+			<div class="userDetail"><a href="${pageContext.request.contextPath }/user/userdetail">내 정보</a></div>
+			<div class="logout"><a href="${pageContext.request.contextPath }/user/logout">로그아웃</a></div>
+	</div>
 	<script>
 		$(".search_center").click(function(){
 			$(".search_keyword").focus();
 		});
+		$(".userInfo").click(function(){
+			$(".userHover").css("display","block");
+		});
+		
 	</script>

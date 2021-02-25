@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- <bean id="customLoginSuccess" class="net.koreate.sec.security.CustomLoginSuccessHandler"/> -->
+	<security:http auto-config="true">
+		<security:form-login/>
+		<security:intercept-url pattern="/review/**" access="hasRole('ROLE_MASTER')"/>
+	</security:http>
+	<security:authentication-manager>
+	<security:authentication-provider>
+		<security:user-service>
+			<security:user name="master" password="{noop}master" authorities="ROLE_MASTER"/>
+		</security:user-service>
+	</security:authentication-provider>
+</security:authentication-manager>
+</beans>

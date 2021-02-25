@@ -56,31 +56,7 @@ function showDetail(id){
 				});
 		});
 	};
-$(".my-rating").starRating({
-	 totalStars: 5,
-	 starShape: 'rounded',
-	 starSize: 50,
-	 hoverColor: '#4A801E',
-	 disableAfterRate: false,
-	 callback: function(currentRating, $el){
-	  	$.ajax({
-	  		type:"POST",
-	  		url:"rating",
-	  		data:{
-	  			mid : mid,
-	  			nickName : nickName,
-	  			star : currentRating
-	  		},
-	  		success : function(data){
-	  			console.log(data + nickName);
-	  		},
-	  		error:function(data){
-	  			console.log(data);
-	  			location.href ="user/login";
-	  		}
-	  	});
-	 }
-});
+
 
 	$(".c_submit").click(function(e){
 		var review = $(".c_content").val();
@@ -90,7 +66,7 @@ $(".my-rating").starRating({
 		}
 		$.ajax({
 			type:"POST",
-			url:"writeReview",
+			url: "writeReview",
 			data:{
 				mid : mid,
 				nickName : nickName,
@@ -102,8 +78,7 @@ $(".my-rating").starRating({
 	  			getList();
 	  		},
 	  		error:function(data){
-	  			console.log(data);
-	  			location.href ="user/login";
+	  			location.href = data;
 	  		}
 		});
 	});

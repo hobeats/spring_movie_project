@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.movie.service.MovieService;
@@ -21,12 +22,13 @@ public class DetailController {
 	@Inject
 	MovieService ms;
 	
-	@PostMapping("rating")
+	@PostMapping("/rating")
 	public ResponseEntity<String> rating(ReviewVO vo) throws Exception{
 		ResponseEntity<String> entity = null;
+		System.out.println(vo);
 		System.out.println("Rating : " + vo.getStar() );
 		System.out.println("nickName : " +  vo.getNickName());
-		if(!vo.getNickName().equals("")) {
+		if(vo.getNickName() != null || !vo.getNickName().equals("")) {
 			ms.rating(vo);
 			entity = new ResponseEntity<>("success",HttpStatus.OK);
 		}else {
@@ -35,7 +37,7 @@ public class DetailController {
 		return entity;
 	}
 	
-	@PostMapping("writeReview")
+	@PostMapping("/writeReview")
 	public ResponseEntity<String> writeReview(ReviewVO vo) throws Exception{
 		ResponseEntity<String> entity = null;
 		System.out.println(vo);
@@ -56,21 +58,22 @@ public class DetailController {
 		entity = new ResponseEntity<>(list,HttpStatus.OK);
 		return entity;
 	}
-	@PostMapping("like")
+	
+	@PostMapping("/like")
 	public ResponseEntity<String> like(LikeVO vo) throws Exception{
 		ResponseEntity<String> entity = null;
 		ms.like(vo);
 		return entity;
 	}
 	
-	@PostMapping("dislike")
+	@PostMapping("/dislike")
 	public ResponseEntity<String> dislike(LikeVO vo) throws Exception{
 		ResponseEntity<String> entity = null;
 		ms.dislike(vo);
 		return entity;
 	}
 	
-	@PostMapping("isliked")
+	@PostMapping("/isliked")
 	public ResponseEntity<LikeVO> isliked(LikeVO vo) throws Exception{
 		ResponseEntity<LikeVO> entity = null;
 		LikeVO likeVO = ms.isliked(vo);
@@ -79,7 +82,7 @@ public class DetailController {
 		return entity;
 	}
 	
-	@PostMapping("getList")
+	@PostMapping("/getList")
 	public ResponseEntity<List<ReviewVO>> getList(String nickName) throws Exception{
 		ResponseEntity<List<ReviewVO>> entity = null;
 		List<ReviewVO> list = ms.searchReviewByNick(nickName);
